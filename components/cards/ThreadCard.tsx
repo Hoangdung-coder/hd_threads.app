@@ -46,24 +46,28 @@ function ThreadCard({
       }`}
     >
       <div className='flex items-start justify-between'>
-        <div className='flex w-full flex-1 flex-row gap-4'>
+        <div className='flex flex-row flex-1 w-full gap-4'>
           <div className='flex flex-col items-center'>
-            <Link href={`/profile/${author.id}`} className='relative h-11 w-11'>
+            <Link 
+            href={`/profile/${author?.id}`} 
+            className='relative h-11 w-11'>
               <Image
-                src={author.image}
+                src={author?.image}
                 alt='user_community_image'
                 fill
-                className='cursor-pointer rounded-full'
+                className='rounded-full cursor-pointer'
               />
             </Link>
 
             <div className='thread-card_bar' />
           </div>
 
-          <div className='flex w-full flex-col'>
-            <Link href={`/profile/${author.id}`} className='w-fit'>
+          <div className='flex flex-col w-full'>
+            <Link 
+            href={`/profile/${author?.id}`} 
+            className='w-fit'>
               <h4 className='cursor-pointer text-base-semibold text-light-1'>
-                {author.name}
+                {author?.name}
               </h4>
             </Link>
 
@@ -76,7 +80,7 @@ function ThreadCard({
                   alt='heart'
                   width={24}
                   height={24}
-                  className='cursor-pointer object-contain'
+                  className='object-contain cursor-pointer'
                 />
                 <Link href={`/thread/${id}`}>
                   <Image
@@ -84,7 +88,7 @@ function ThreadCard({
                     alt='heart'
                     width={24}
                     height={24}
-                    className='cursor-pointer object-contain'
+                    className='object-contain cursor-pointer'
                   />
                 </Link>
                 <Image
@@ -92,14 +96,14 @@ function ThreadCard({
                   alt='heart'
                   width={24}
                   height={24}
-                  className='cursor-pointer object-contain'
+                  className='object-contain cursor-pointer'
                 />
                 <Image
                   src='/assets/share.svg'
                   alt='heart'
                   width={24}
                   height={24}
-                  className='cursor-pointer object-contain'
+                  className='object-contain cursor-pointer'
                 />
               </div>
 
@@ -117,14 +121,14 @@ function ThreadCard({
         <DeleteThread
           threadId={JSON.stringify(id)}
           currentUserId={currentUserId}
-          authorId={author.id}
+          authorId={author?.id}
           parentId={parentId}
           isComment={isComment}
         />
       </div>
 
       {!isComment && comments.length > 0 && (
-        <div className='ml-1 mt-3 flex items-center gap-2'>
+        <div className='flex items-center gap-2 mt-3 ml-1'>
           {comments.slice(0, 2).map((comment, index) => (
             <Image
               key={index}
@@ -147,7 +151,7 @@ function ThreadCard({
       {!isComment && community && (
         <Link
           href={`/communities/${community.id}`}
-          className='mt-5 flex items-center'
+          className='flex items-center mt-5'
         >
           <p className='text-subtle-medium text-gray-1'>
             {formatDateString(createdAt)}
@@ -159,7 +163,7 @@ function ThreadCard({
             alt={community.name}
             width={14}
             height={14}
-            className='ml-1 rounded-full object-cover'
+            className='object-cover ml-1 rounded-full'
           />
         </Link>
       )}
